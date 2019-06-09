@@ -9,30 +9,36 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class Data {
+public class Excelutills {
 	static XSSFWorkbook workbook;
 	static XSSFSheet sheet;
 	
 	static String path=System.getProperty("user.dir");
-public Data(String wbook, String sheetname) throws IOException
+public Excelutills(String wbook, String sheetname) throws IOException
 {
 	workbook=new XSSFWorkbook(wbook);
 	sheet=workbook.getSheet(sheetname);
 }
 	
-	
-	
-	public static void main(String[] args) throws IOException {
+
+	public static String getdata(int row, int cell) throws IOException{
 		
-		
+	  String cellvalue = sheet.getRow(row).getCell(cell).getStringCellValue();
+	    // System.out.println("cell value is:"+cellvalue);
+		return cellvalue;
 		
 	}
-
-	public static void getdata(int row, int cell) throws IOException{
-		
+	public int rows_count() {
 		int rows = sheet.getPhysicalNumberOfRows();
-		String cellvalue = sheet.getRow(row).getCell(cell).getStringCellValue();
-	     System.out.println("cell value is:"+cellvalue);
+	
+		return rows;
+	}
+	
+	public int col_count(){
+		
+		int cellnum =sheet.getRow(0).getPhysicalNumberOfCells();
+		//System.out.println("total number of cells are:"+cellnum);
+		return cellnum;
 		
 	}
 
